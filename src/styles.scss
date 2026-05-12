@@ -3,48 +3,51 @@
 @tailwind utilities;
 
 /* Import ngx-toastr styles */
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
+
+/* ── Google Fonts ────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.5rem;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 214 32% 91%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 214 32% 91%;
+    --accent-foreground: 222 47% 11%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
+    --background: 222 47% 4%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 6%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 191 97% 44%;
+    --primary-foreground: 222 47% 4%;
+    --secondary: 215 28% 14%;
+    --secondary-foreground: 213 31% 91%;
+    --muted: 222 47% 10%;
+    --muted-foreground: 215 20% 60%;
+    --accent: 215 28% 14%;
+    --accent-foreground: 213 31% 91%;
+    --border: 215 28% 14%;
+    --input: 215 28% 14%;
+    --ring: 191 97% 44%;
   }
 }
 
@@ -52,18 +55,173 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-950;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cyan-600/50 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyan-500/70;
+  }
+
+  /* Monospace font for code snippets */
+  code,
+  .font-mono {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
   }
 }
 
-/* Toastr custom styles */
+/* ── Glassmorphism utilities ─────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+
+  .glow-cyan-lg {
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.4);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #06b6d4, #3b82f6, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(
+      rgba(6, 182, 212, 0.15) 1px,
+      transparent 1px
+    );
+    background-size: 30px 30px;
+  }
+
+  .section-dark {
+    @apply bg-[#050d1f] dark:bg-[#050d1f] bg-slate-50;
+  }
+}
+
+/* ── Section separation ──────────────────────────────────────── */
+.section-alt {
+  background: linear-gradient(180deg, #070e1f 0%, #050d1f 100%);
+}
+
+/* ── Typed.js cursor ─────────────────────────────────────────── */
+.typed-cursor {
+  color: #06b6d4;
+  font-weight: 300;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ── Animated gradient border ────────────────────────────────── */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6, #6366f1);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Timeline ────────────────────────────────────────────────── */
+.timeline-line {
+  background: linear-gradient(to bottom, #06b6d4, #3b82f6, #6366f1);
+}
+
+/* ── GSAP initial states (prevent FOUC) ──────────────────────── */
+.gsap-hidden {
+  opacity: 0;
+}
+
+/* ── Toastr custom styles ────────────────────────────────────── */
 .toast-container .ngx-toastr {
-  @apply shadow-lg rounded-lg;
+  @apply shadow-lg rounded-xl;
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* ── Skill level bar ─────────────────────────────────────────── */
+.skill-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1s ease-out;
+}
+
+.skill-bar.animated {
+  transform: scaleX(1);
 }

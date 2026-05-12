@@ -1,28 +1,85 @@
-<section id="about" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/50">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-        {{ t().title }}
-      </h2>
-      <p class="text-slate-600 dark:text-slate-400 text-lg">{{ t().subtitle }}</p>
-    </div>
+<section id="about" class="py-28 px-6 bg-[#070e1f] relative overflow-hidden">
+	<!-- Background decorations -->
+	<div
+		class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent">
+	</div>
+	<div class="absolute inset-0 bg-dots opacity-20 pointer-events-none"></div>
 
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <div class="space-y-6">
-        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-          {{ t().content }}
-        </p>
-      </div>
+	<div class="max-w-7xl mx-auto">
 
-      <div class="grid grid-cols-2 gap-6">
-        <div
-          *ngFor="let item of t().highlights"
-          class="text-center p-6 border-2 rounded-lg bg-card hover:border-cyan-500 transition-all hover:shadow-lg"
-        >
-          <div class="text-4xl font-bold text-cyan-500 mb-2">{{ item.value }}</div>
-          <div class="text-slate-600 dark:text-slate-400">{{ item.label }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
+		<!-- Section Header -->
+		<div class="text-center mb-20">
+			<p class="font-mono text-cyan-400 text-sm tracking-widest uppercase mb-3">// about.me</p>
+			<h2
+				class="text-4xl md:text-5xl font-black mb-3 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+				{{ t().title }}
+			</h2>
+			<p class="text-slate-400 text-lg">{{ t().subtitle }}</p>
+		</div>
+
+		<!-- Stats row -->
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-20">
+			<div *ngFor="let item of t().highlights"
+				class="stat-card glass rounded-2xl p-6 text-center hover:glow-cyan transition-all duration-300 group border border-slate-700/30 hover:border-cyan-500/30">
+				<div class="text-4xl font-black text-white mb-1">
+					<span #counterEl [attr.data-value]="item.value" [attr.data-suffix]="item['suffix'] ?? ''">{{
+						item.value }}{{ item['suffix'] }}</span>
+				</div>
+				<div class="text-slate-400 text-sm font-medium group-hover:text-slate-300 transition-colors">
+					{{ item.label }}
+				</div>
+			</div>
+		</div>
+
+		<!-- Main content grid -->
+		<div class="grid lg:grid-cols-2 gap-16 items-start">
+
+			<!-- Text -->
+			<div class="about-text space-y-6">
+				<p class="text-slate-300 text-base md:text-lg leading-relaxed">
+					{{ t().content }}
+				</p>
+
+				<div class="pt-2">
+					<p class="font-mono text-cyan-400 text-xs uppercase tracking-widest mb-3">// education</p>
+					<div class="glass rounded-xl p-5 border border-slate-700/30">
+						<div class="flex items-start gap-4">
+							<div class="text-2xl">🎓</div>
+							<div>
+								<p class="font-semibold text-white text-sm">Diploma di Perito Industriale Capotecnico
+								</p>
+								<p class="text-cyan-400 text-xs font-mono mt-0.5">Specializzazione Informatica</p>
+								<p class="text-slate-400 text-xs mt-1">I.T.I. "Stanislao Cannizzaro" – Rho (MI)</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="pt-2">
+					<p class="font-mono text-cyan-400 text-xs uppercase tracking-widest mb-3">// languages</p>
+					<div class="flex gap-3 flex-wrap">
+						<span class="px-4 py-2 glass rounded-lg border border-slate-700/30 text-sm text-slate-300">🇪🇸
+							Español — Madrelingua</span>
+						<span class="px-4 py-2 glass rounded-lg border border-slate-700/30 text-sm text-slate-300">🇬🇧
+							English — Professional</span>
+						<span class="px-4 py-2 glass rounded-lg border border-slate-700/30 text-sm text-slate-300">🇮🇹
+							Italiano — Fluente</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Focus areas -->
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+				<div *ngFor="let area of focusAreas"
+					class="focus-card glass rounded-2xl p-6 border hover:scale-[1.02] transition-all duration-300 cursor-default group"
+					[ngClass]="area.border">
+					<div class="text-3xl mb-3">{{ area.icon }}</div>
+					<h4 class="font-bold text-white text-sm mb-2 group-hover:text-cyan-400 transition-colors">
+						{{ getFocusTitle(area) }}
+					</h4>
+					<p class="text-slate-500 text-xs font-mono leading-relaxed">{{ area.desc }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

@@ -1,20 +1,25 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../services/language.service';
 import { translations, projects } from '../../data/mock.data';
 import { ExternalLink, Github, LucideAngularModule } from 'lucide-angular';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Project } from '../../models/portfolio.model';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-projects',
   standalone: true,
   imports: [CommonModule, LucideAngularModule],
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss']
+  styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements AfterViewInit {
   readonly ExternalLink = ExternalLink;
   readonly Github = Github;
-  projects = projects;
+  projects: Project[] = projects;
 
   t = computed(() => {
     const lang = this.languageService.language();
@@ -23,8 +28,19 @@ export class ProjectsComponent {
 
   constructor(private languageService: LanguageService) {}
 
-  getDescription(project: any): string {
+  ngAfterViewInit(): void {
+    gsap.from('.project-card', {
+      scrollTrigger: { trigger: '#projects', start: 'top 75%' },
+      opacity: 0,
+      y: 50,
+      duration: 0.7,
+      stagger: 0.15,
+      ease: 'power3.out',
+    });
+  }
+
+  getDescription(project: Project): string {
     const lang = this.languageService.language();
-    return project.description[lang];
+    return project.description[lang as keyof typeof project.description];
   }
 }

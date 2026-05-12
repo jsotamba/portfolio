@@ -1,37 +1,74 @@
-<section id="tech" class="py-24 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-        {{ t().title }}
-      </h2>
-      <p class="text-slate-600 dark:text-slate-400 text-lg">{{ t().subtitle }}</p>
-    </div>
+<section id="tech" class="py-28 px-6 bg-[#070e1f] relative overflow-hidden">
+	<!-- Accent line -->
+	<div
+		class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-1 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent">
+	</div>
+	<div class="absolute inset-0 bg-dots opacity-20 pointer-events-none"></div>
 
-    <div class="space-y-12">
-      <div *ngFor="let category of techStack">
-        <h3 class="text-2xl font-semibold mb-6 text-slate-800 dark:text-slate-200">
-          {{ getCategoryName(category.category) }}
-        </h3>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
-          <div
-            *ngFor="let tech of category.items"
-            class="p-6 text-center rounded-lg border-2 bg-card hover:shadow-xl transition-all hover:-translate-y-2 cursor-pointer group hover:border-cyan-500"
-          >
-            <div class="flex justify-center mb-3">
-              <div class="p-4 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:scale-110 transition-transform">
-                <lucide-icon
-                  [img]="getIcon(tech.icon)"
-                  class="h-8 w-8"
-                  [style.color]="tech.color"
-                ></lucide-icon>
-              </div>
-            </div>
-            <div class="font-semibold text-slate-700 dark:text-slate-300">
-              {{ tech.name }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="max-w-6xl mx-auto">
+
+		<!-- Header -->
+		<div class="text-center mb-14">
+			<p class="font-mono text-cyan-400 text-sm tracking-widest uppercase mb-3">// tech.stack</p>
+			<h2
+				class="text-4xl md:text-5xl font-black mb-3 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+				{{ t().title }}
+			</h2>
+			<p class="text-slate-400 text-lg">{{ t().subtitle }}</p>
+		</div>
+
+		<!-- Category tabs -->
+		<div class="flex flex-wrap justify-center gap-2 mb-12">
+			<button *ngFor="let tab of categoryTabs" (click)="setCategory(tab.key)"
+				class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" [ngClass]="activeCategory() === tab.key
+          ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
+          : 'glass border border-slate-700/50 text-slate-400 hover:text-slate-200 hover:border-slate-600'">
+				{{ tab.label }}
+			</button>
+		</div>
+
+		<!-- Tech grid -->
+		<div class="space-y-10">
+			<div *ngFor="let category of filteredStack">
+				<div class="flex items-center gap-3 mb-5">
+					<div class="h-px flex-1 bg-gradient-to-r from-slate-800 to-transparent"></div>
+					<span class="font-mono text-xs text-slate-500 uppercase tracking-widest">
+						{{ getCategoryName(category.category) }}
+					</span>
+					<div class="h-px flex-1 bg-gradient-to-l from-slate-800 to-transparent"></div>
+				</div>
+
+				<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+					<div *ngFor="let tech of category.items"
+						class="tech-badge group glass rounded-xl p-4 border border-slate-700/30 text-center transition-all duration-300 hover:-translate-y-1 hover:border-slate-500/50 cursor-default"
+						[style.hover]="'border-color: ' + tech.color">
+						<!-- Icon -->
+						<div class="flex justify-center mb-2.5">
+							<div
+								class="p-2.5 rounded-lg bg-slate-800/60 group-hover:scale-110 transition-transform duration-200">
+								<lucide-icon [img]="getIcon(tech.icon)" class="h-5 w-5"
+									[style.color]="tech.color"></lucide-icon>
+							</div>
+						</div>
+
+						<!-- Name -->
+						<span
+							class="text-xs font-medium text-slate-300 group-hover:text-white transition-colors block leading-tight">
+							{{ tech.name }}
+						</span>
+
+						<!-- Level bar -->
+						<div *ngIf="tech['level']" class="mt-2.5">
+							<div class="h-0.5 w-full bg-slate-700/60 rounded-full overflow-hidden">
+								<div class="h-full rounded-full transition-all duration-700"
+									[style.width]="tech['level'] + '%'"
+									[style.background]="'linear-gradient(90deg, ' + tech.color + '99, ' + tech.color + ')'">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

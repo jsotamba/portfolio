@@ -19,7 +19,7 @@ export interface Translation {
     title: string;
     subtitle: string;
     content: string;
-    highlights: Array<{ label: string; value: string }>;
+    highlights: Array<{ label: string; value: string; suffix?: string }>;
   };
   tech: {
     title: string;
@@ -29,12 +29,14 @@ export interface Translation {
       frontend: string;
       database: string;
       tools: string;
+      cloud?: string;
     };
   };
   experience: {
     title: string;
     subtitle: string;
     present: string;
+    keyActivities: string;
   };
   projects: {
     title: string;
@@ -70,6 +72,7 @@ export interface TechItem {
   name: string;
   icon: string;
   color: string;
+  level?: number;
 }
 
 export interface TechCategory {
@@ -82,6 +85,7 @@ export interface Experience {
   title: string;
   company: string;
   location: string;
+  sector?: string;
   period: {
     start: string;
     end: string | null;
@@ -92,6 +96,8 @@ export interface Experience {
     es: string;
   };
   technologies: string[];
+  keyActivities?: string[];
+  accentColor?: string;
 }
 
 export interface Project {
@@ -106,6 +112,7 @@ export interface Project {
   image: string;
   github: string;
   demo: string;
+  sector?: string;
 }
 
 export interface SocialLink {

@@ -11,20 +11,20 @@ import { ToastrService } from 'ngx-toastr';
   standalone: true,
   imports: [CommonModule, FormsModule, LucideAngularModule],
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
   readonly Send = Send;
   readonly FileDown = FileDown;
   icons = icons;
-  
+
   socialLinks = socialLinks;
   cvLinks = cvLinks;
-  
+
   formData = {
     name: '',
     email: '',
-    message: ''
+    message: '',
   };
 
   t = computed(() => {
@@ -34,11 +34,11 @@ export class ContactComponent {
 
   constructor(
     private languageService: LanguageService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {}
 
   getIcon(iconName: string): any {
-    return (icons as any)[iconName];
+    return (icons as any)[iconName] ?? (icons as any)['Link'];
   }
 
   onSubmit(): void {
