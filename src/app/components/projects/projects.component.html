@@ -1,0 +1,63 @@
+<section id="projects" class="py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+        {{ t().title }}
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg">{{ t().subtitle }}</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div
+        *ngFor="let project of projects"
+        class="rounded-lg border bg-card overflow-hidden hover:shadow-2xl transition-all group border-2 hover:border-cyan-500"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+            [src]="project.image"
+            [alt]="project.title"
+            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        </div>
+
+        <div class="p-6">
+          <h3 class="text-2xl font-bold mb-3 text-slate-800 dark:text-slate-200">
+            {{ project.title }}
+          </h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-4">
+            {{ getDescription(project) }}
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span
+              *ngFor="let tech of project.technologies"
+              class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+            >
+              {{ tech }}
+            </span>
+          </div>
+
+          <div class="flex gap-3">
+            <a
+              [href]="project.demo"
+              target="_blank"
+              class="flex-1 inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 bg-cyan-500 hover:bg-cyan-600 text-white transition-colors"
+            >
+              <lucide-icon [img]="ExternalLink" class="mr-2 h-4 w-4"></lucide-icon>
+              {{ t().viewProject }}
+            </a>
+            <a
+              [href]="project.github"
+              target="_blank"
+              class="flex-1 inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              <lucide-icon [img]="Github" class="mr-2 h-4 w-4"></lucide-icon>
+              {{ t().viewCode }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

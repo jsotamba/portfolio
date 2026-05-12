@@ -1,0 +1,92 @@
+<section id="contact" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/50">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+        {{ t().title }}
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg">{{ t().subtitle }}</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Contact Form -->
+      <div>
+        <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="space-y-6">
+          <div>
+            <input
+              type="text"
+              [(ngModel)]="formData.name"
+              name="name"
+              [placeholder]="t().form.name"
+              required
+              class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              [(ngModel)]="formData.email"
+              name="email"
+              [placeholder]="t().form.email"
+              required
+              class="flex h-12 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            />
+          </div>
+          <div>
+            <textarea
+              [(ngModel)]="formData.message"
+              name="message"
+              [placeholder]="t().form.message"
+              required
+              rows="6"
+              class="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            [disabled]="!contactForm.valid"
+            class="w-full inline-flex items-center justify-center rounded-md text-sm font-medium h-11 px-8 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <lucide-icon [img]="Send" class="mr-2 h-5 w-5"></lucide-icon>
+            {{ t().form.send }}
+          </button>
+        </form>
+      </div>
+
+      <!-- Social Links & CV Download -->
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">
+            {{ t().social }}
+          </h3>
+          <div class="flex gap-4">
+            <a
+              *ngFor="let social of socialLinks"
+              [href]="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-3 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-cyan-500 dark:hover:bg-cyan-500 transition-all hover:scale-110"
+            >
+              <lucide-icon [img]="getIcon(social.icon)" class="h-6 w-6"></lucide-icon>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-slate-800 dark:text-slate-200">
+            {{ t().cvSection }}
+          </h3>
+          <div class="space-y-3">
+            <button
+              *ngFor="let cv of cvLinks"
+              (click)="downloadCV(cv)"
+              class="w-full inline-flex items-center justify-start rounded-md text-sm font-medium h-10 px-4 border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              <lucide-icon [img]="FileDown" class="mr-2 h-5 w-5"></lucide-icon>
+              {{ cv.label }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

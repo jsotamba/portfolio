@@ -1,0 +1,28 @@
+<section id="about" class="py-24 px-6 bg-slate-50 dark:bg-slate-900/50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+        {{ t().title }}
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg">{{ t().subtitle }}</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          {{ t().content }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div
+          *ngFor="let item of t().highlights"
+          class="text-center p-6 border-2 rounded-lg bg-card hover:border-cyan-500 transition-all hover:shadow-lg"
+        >
+          <div class="text-4xl font-bold text-cyan-500 mb-2">{{ item.value }}</div>
+          <div class="text-slate-600 dark:text-slate-400">{{ item.label }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
