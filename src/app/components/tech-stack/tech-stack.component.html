@@ -19,7 +19,7 @@
 
 		<!-- Category tabs -->
 		<div class="flex flex-wrap justify-center gap-2 mb-12">
-			<button *ngFor="let tab of categoryTabs" (click)="setCategory(tab.key)"
+			<button *ngFor="let tab of categoryTabs()" (click)="setCategory(tab.key)"
 				class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200" [ngClass]="activeCategory() === tab.key
           ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25'
           : 'glass border border-slate-700/50 text-slate-400 hover:text-slate-200 hover:border-slate-600'">
@@ -29,7 +29,7 @@
 
 		<!-- Tech grid -->
 		<div class="space-y-10">
-			<div *ngFor="let category of filteredStack">
+			<div *ngFor="let category of filteredStack()">
 				<div class="flex items-center gap-3 mb-5">
 					<div class="h-px flex-1 bg-gradient-to-r from-slate-800 to-transparent"></div>
 					<span class="font-mono text-xs text-slate-500 uppercase tracking-widest">

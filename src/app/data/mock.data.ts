@@ -240,7 +240,7 @@ export const techStack: TechCategory[] = [
         color: '#59666c',
         level: 80,
       },
-      { name: 'Python', icon: 'Code2', color: '#3776ab', level: 82 },
+      { name: 'Python', icon: 'Code', color: '#3776ab', level: 82 },
       { name: 'Flask', icon: 'Zap', color: '#e8e8e8', level: 75 },
       { name: 'Django REST', icon: 'Server', color: '#44b78b', level: 72 },
       { name: 'Struts 2', icon: 'Layers', color: '#007396', level: 80 },
@@ -275,7 +275,7 @@ export const techStack: TechCategory[] = [
         color: '#3a75bd',
         level: 75,
       },
-      { name: 'Pentaho', icon: 'BarChart', color: '#cf5e21', level: 70 },
+      { name: 'Pentaho', icon: 'ChartBar', color: '#cf5e21', level: 70 },
     ],
   },
   {

@@ -29,13 +29,23 @@ export class ProjectsComponent implements AfterViewInit {
   constructor(private languageService: LanguageService) {}
 
   ngAfterViewInit(): void {
-    gsap.from('.project-card', {
-      scrollTrigger: { trigger: '#projects', start: 'top 75%' },
-      opacity: 0,
-      y: 50,
-      duration: 0.7,
-      stagger: 0.15,
-      ease: 'power3.out',
+    ScrollTrigger.create({
+      trigger: '#projects',
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(
+          '.project-card',
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power3.out',
+          },
+        );
+      },
     });
   }
 
